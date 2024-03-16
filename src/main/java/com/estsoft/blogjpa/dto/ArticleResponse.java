@@ -1,7 +1,6 @@
 package com.estsoft.blogjpa.dto;
 import com.estsoft.blogjpa.model.Article;
 import lombok.*;
-import org.springframework.web.ErrorResponse;
 
 @Getter
 @Setter
