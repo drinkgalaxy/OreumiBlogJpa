@@ -4,6 +4,7 @@ import com.estsoft.blogjpa.dto.CommentResponse;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -12,14 +13,16 @@ import java.time.LocalDateTime;
 @EntityListeners(AuditingEntityListener.class)
 @Getter
 @Entity
+@NoArgsConstructor
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false)
     private Long id;
 
-    @Column(name = "article_id", nullable = false)
-    private Long article_id;
+    @OneToOne
+    @JoinColumn(name = "article_id")
+    private Article article;
 
     @Column(name = "body", nullable = false)
     private String body;
@@ -29,28 +32,16 @@ public class Comment {
     private LocalDateTime createdAt;
 
     @Builder
-    public Comment(String body) {
+    public Comment(Article article, String body) {
+        this.article = article;
         this.body = body;
-    }
-
-    public Comment() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public Long getArticle_id() {
-        return article_id;
-    }
-
-    public String getBody() {
-        return body;
     }
 
     public CommentResponse toResponse() {
         return CommentResponse.builder()
+                .id(id)
                 .body(body)
+                .createdAt(createdAt)
                 .build();
     }
 }

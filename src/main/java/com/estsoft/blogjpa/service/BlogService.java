@@ -21,11 +21,13 @@ import java.util.List;
 @Service
 public class BlogService {
     private final BlogRepository blogRepository;
+    private final CommentRepository commentRepository;
     private final ExampleAPIClient apiClient;
 
-    public BlogService(BlogRepository blogRepository, ExampleAPIClient apiClient) {
+    public BlogService(BlogRepository blogRepository, ExampleAPIClient apiClient, CommentRepository commentRepository) {
         this.blogRepository = blogRepository;
         this.apiClient = apiClient;
+        this.commentRepository = commentRepository;
     }
 
     public Article save(AddArticleRequest request) {
@@ -82,5 +84,17 @@ public class BlogService {
         return jsonMapList.stream()
                 .map(hashMap -> new Article(hashMap.get("title"), hashMap.get("body")))
                 .toList();
+    }
+
+    public List<Comment> findAllComment() {
+        return commentRepository.findAll();
+    }
+
+    public Comment saveComment(Long articleId, AddCommentRequest request) {
+        return commentRepository.save(request.toEntity());
+    }
+
+    public Comment findCommentById(Long articleId, Long commentId) {
+        return commentRepository.findArticleIdAndCommentId(articleId, commentId);
     }
 }
