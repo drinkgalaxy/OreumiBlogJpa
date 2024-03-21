@@ -2,12 +2,10 @@ package com.estsoft.blogjpa.controller;
 
 import com.estsoft.blogjpa.dto.AddCommentRequest;
 import com.estsoft.blogjpa.dto.CommentResponse;
-import com.estsoft.blogjpa.model.Comment;
+import com.estsoft.blogjpa.domain.Comment;
 import com.estsoft.blogjpa.service.BlogService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 public class CommentController {

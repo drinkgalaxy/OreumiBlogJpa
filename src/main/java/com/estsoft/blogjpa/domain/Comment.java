@@ -1,4 +1,4 @@
-package com.estsoft.blogjpa.model;
+package com.estsoft.blogjpa.domain;
 
 import com.estsoft.blogjpa.dto.CommentResponse;
 import jakarta.persistence.*;

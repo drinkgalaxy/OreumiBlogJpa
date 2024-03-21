@@ -1,6 +1,6 @@
 package com.estsoft.blogjpa.controller;
 
-import com.estsoft.blogjpa.model.Article;
+import com.estsoft.blogjpa.domain.Article;
 import org.springframework.ui.Model;
 import com.estsoft.blogjpa.dto.ArticleViewResponse;
 import com.estsoft.blogjpa.service.BlogService;

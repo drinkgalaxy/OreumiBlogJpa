@@ -1,14 +1,12 @@
 package com.estsoft.blogjpa.controller;
 
-import com.estsoft.blogjpa.model.Article;
+import com.estsoft.blogjpa.domain.Article;
 import com.estsoft.blogjpa.dto.AddArticleRequest;
 import com.estsoft.blogjpa.dto.ArticleResponse;
 import com.estsoft.blogjpa.service.BlogService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.annotation.RequestScope;
 
 import java.util.List;
 
@@ -60,8 +58,6 @@ public class BlogController {
     public ResponseEntity<Article> updateOneArticle(@PathVariable Long id,
                                                     @RequestBody AddArticleRequest request) {
         Article update = blogService.update(id, request);
-//        Article update = blogService.updateTitle(id, request);
         return ResponseEntity.ok(update);
     }
-
 }
